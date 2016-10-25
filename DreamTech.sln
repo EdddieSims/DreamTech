@@ -5,6 +5,8 @@ VisualStudioVersion = 14.0.25123.0
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DreamTech", "DreamTech\DreamTech.csproj", "{9C81FB1E-9EA5-44AD-80E5-CF727EE08141}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "console", "console\console.csproj", "{960525ED-C2D0-4FD0-9E03-31C19051BEAB}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -15,6 +17,10 @@ Global
 		{9C81FB1E-9EA5-44AD-80E5-CF727EE08141}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{9C81FB1E-9EA5-44AD-80E5-CF727EE08141}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{9C81FB1E-9EA5-44AD-80E5-CF727EE08141}.Release|Any CPU.Build.0 = Release|Any CPU
+		{960525ED-C2D0-4FD0-9E03-31C19051BEAB}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{960525ED-C2D0-4FD0-9E03-31C19051BEAB}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{960525ED-C2D0-4FD0-9E03-31C19051BEAB}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{960525ED-C2D0-4FD0-9E03-31C19051BEAB}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

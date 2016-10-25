@@ -10,7 +10,10 @@ namespace DreamTech.Controllers
     {
         public ActionResult Index()
         {
-            return View();
+            var repo = new Repos.ProductRepo();
+            var prodList = repo.GetAllProducts();
+
+            return View(prodList);
         }
 
         public ActionResult About()

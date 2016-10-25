@@ -44,6 +44,14 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\packages\EntityFramework.6.1.3\lib\net45\EntityFramework.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="EntityFramework.SqlServer, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\packages\EntityFramework.6.1.3\lib\net45\EntityFramework.SqlServer.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
     <Reference Include="Microsoft.AI.Agent.Intercept, Version=1.2.0.1011, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <HintPath>..\packages\Microsoft.ApplicationInsights.Agent.Intercept.1.2.0\lib\net45\Microsoft.AI.Agent.Intercept.dll</HintPath>
       <Private>True</Private>
@@ -143,12 +151,6 @@
     <Reference Include="Newtonsoft.Json">
       <HintPath>..\packages\Newtonsoft.Json.6.0.4\lib\net45\Newtonsoft.Json.dll</HintPath>
     </Reference>
-    <Reference Include="EntityFramework">
-      <HintPath>..\packages\EntityFramework.6.1.3\lib\net45\EntityFramework.dll</HintPath>
-    </Reference>
-    <Reference Include="EntityFramework.SqlServer">
-      <HintPath>..\packages\EntityFramework.6.1.3\lib\net45\EntityFramework.SqlServer.dll</HintPath>
-    </Reference>
     <Reference Include="Microsoft.AspNet.Identity.Core">
       <HintPath>..\packages\Microsoft.AspNet.Identity.Core.2.2.1\lib\net45\Microsoft.AspNet.Identity.Core.dll</HintPath>
     </Reference>
@@ -198,6 +200,53 @@
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
+    <Compile Include="Data\Models\btl_ProductPrice.cs" />
+    <Compile Include="Data\Models\dream_techContext.cs" />
+    <Compile Include="Data\Models\Mapping\btl_ProductPriceMap.cs" />
+    <Compile Include="Data\Models\Mapping\sysdiagramMap.cs" />
+    <Compile Include="Data\Models\Mapping\tblCountryMap.cs" />
+    <Compile Include="Data\Models\Mapping\tblFeaturedProductMap.cs" />
+    <Compile Include="Data\Models\Mapping\tblProductCategoryMap.cs" />
+    <Compile Include="Data\Models\Mapping\tblProductMap.cs" />
+    <Compile Include="Data\Models\Mapping\tbl_BillingAddressMap.cs" />
+    <Compile Include="Data\Models\Mapping\tbl_CartItemMap.cs" />
+    <Compile Include="Data\Models\Mapping\tbl_CartMap.cs" />
+    <Compile Include="Data\Models\Mapping\tbl_CustomerContactMap.cs" />
+    <Compile Include="Data\Models\Mapping\tbl_DeliveryOptionsMap.cs" />
+    <Compile Include="Data\Models\Mapping\tbl_DelivetyAddressesMap.cs" />
+    <Compile Include="Data\Models\Mapping\tbl_OptInMap.cs" />
+    <Compile Include="Data\Models\Mapping\tbl_OptInTypeMap.cs" />
+    <Compile Include="Data\Models\Mapping\tbl_OrderItemsMap.cs" />
+    <Compile Include="Data\Models\Mapping\tbl_OrderMap.cs" />
+    <Compile Include="Data\Models\Mapping\tbl_OrderStatusMap.cs" />
+    <Compile Include="Data\Models\Mapping\tbl_ProductTypeMap.cs" />
+    <Compile Include="Data\Models\Mapping\tbl_PromoCodeMap.cs" />
+    <Compile Include="Data\Models\Mapping\tbl_PromoTypeMap.cs" />
+    <Compile Include="Data\Models\Mapping\tbl_UserMap.cs" />
+    <Compile Include="Data\Models\Mapping\tbl_WishlistItemMap.cs" />
+    <Compile Include="Data\Models\Mapping\tbl_WishlistMap.cs" />
+    <Compile Include="Data\Models\sysdiagram.cs" />
+    <Compile Include="Data\Models\tblCountry.cs" />
+    <Compile Include="Data\Models\tblFeaturedProduct.cs" />
+    <Compile Include="Data\Models\tblProduct.cs" />
+    <Compile Include="Data\Models\tblProductCategory.cs" />
+    <Compile Include="Data\Models\tbl_BillingAddress.cs" />
+    <Compile Include="Data\Models\tbl_Cart.cs" />
+    <Compile Include="Data\Models\tbl_CartItem.cs" />
+    <Compile Include="Data\Models\tbl_CustomerContact.cs" />
+    <Compile Include="Data\Models\tbl_DeliveryOptions.cs" />
+    <Compile Include="Data\Models\tbl_DelivetyAddresses.cs" />
+    <Compile Include="Data\Models\tbl_OptIn.cs" />
+    <Compile Include="Data\Models\tbl_OptInType.cs" />
+    <Compile Include="Data\Models\tbl_Order.cs" />
+    <Compile Include="Data\Models\tbl_OrderItems.cs" />
+    <Compile Include="Data\Models\tbl_OrderStatus.cs" />
+    <Compile Include="Data\Models\tbl_ProductType.cs" />
+    <Compile Include="Data\Models\tbl_PromoCode.cs" />
+    <Compile Include="Data\Models\tbl_PromoType.cs" />
+    <Compile Include="Data\Models\tbl_User.cs" />
+    <Compile Include="Data\Models\tbl_Wishlist.cs" />
+    <Compile Include="Data\Models\tbl_WishlistItem.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -205,6 +254,7 @@
     <Compile Include="Models\IdentityModels.cs" />
     <Compile Include="Models\ManageViewModels.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Repos\ProductRepo.cs" />
     <Compile Include="Startup.cs" />
   </ItemGroup>
   <ItemGroup>
