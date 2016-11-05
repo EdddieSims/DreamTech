@@ -254,7 +254,25 @@
     <Compile Include="Models\IdentityModels.cs" />
     <Compile Include="Models\ManageViewModels.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Repos\BillingAddressRepo.cs" />
+    <Compile Include="Repos\CartItemRepo.cs" />
+    <Compile Include="Repos\CartRepo.cs" />
+    <Compile Include="Repos\CategoryRepo.cs" />
+    <Compile Include="Repos\CountryRepo.cs" />
+    <Compile Include="Repos\CustomerContactRepo.cs" />
+    <Compile Include="Repos\DeliveryAddressRepo.cs" />
+    <Compile Include="Repos\DeliveryOptionsRepo.cs" />
+    <Compile Include="Repos\FeaturedProductRepo.cs" />
+    <Compile Include="Repos\OptInRepo.cs" />
+    <Compile Include="Repos\OptInTypeRepo.cs" />
+    <Compile Include="Repos\OrderRepo.cs" />
+    <Compile Include="Repos\OrderStatusRepo.cs" />
+    <Compile Include="Repos\ProductPriceRepo.cs" />
     <Compile Include="Repos\ProductRepo.cs" />
+    <Compile Include="Repos\PromotionsRepo.cs" />
+    <Compile Include="Repos\UserRepo.cs" />
+    <Compile Include="Repos\WhislistItemRepo.cs" />
+    <Compile Include="Repos\WishlistRepo.cs" />
     <Compile Include="Startup.cs" />
   </ItemGroup>
   <ItemGroup>
