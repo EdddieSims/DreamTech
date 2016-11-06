@@ -6,7 +6,7 @@ using System.Web.Mvc;
 
 namespace DreamTech.Controllers
 {
-    public class NewsLetterController : Controller
+    public class NewsLetterController : BaseController
     {
         // GET: NewsLetter
         public ActionResult Index()
