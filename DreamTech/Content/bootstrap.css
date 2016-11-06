@@ -4389,7 +4389,7 @@ textarea.input-group-sm > .input-group-btn > .btn {
 }
 
 .navbar-default .navbar-brand {
-  color: #777777;
+  color: dodgerblue;
 }
 
 .navbar-default .navbar-brand:hover,
@@ -4505,8 +4505,9 @@ textarea.input-group-sm > .input-group-btn > .btn {
   border-color: #080808;
 }
 
-.navbar-inverse .navbar-brand {
-  color: #999999;
+.navbar-inverse .navbar-brand 
+{
+  color: dodgerblue;
 }
 
 .navbar-inverse .navbar-brand:hover,
