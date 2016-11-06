@@ -12,7 +12,7 @@ namespace console.Models.Mapping
 
             // Properties
             this.Property(t => t.user_id)
-                .HasDatabaseGeneratedOption(DatabaseGeneratedOption.None);
+                .HasDatabaseGeneratedOption(DatabaseGeneratedOption.Identity);
 
             this.Property(t => t.user_name)
                 .IsRequired()
@@ -31,7 +31,7 @@ namespace console.Models.Mapping
                 .HasMaxLength(255);
 
             // Table & Column Mappings
-            this.ToTable("tbl.User");
+            this.ToTable("tblUser");
             this.Property(t => t.user_id).HasColumnName("user_id");
             this.Property(t => t.user_name).HasColumnName("user_name");
             this.Property(t => t.user_surname).HasColumnName("user_surname");

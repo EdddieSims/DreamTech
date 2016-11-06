@@ -12,7 +12,7 @@ namespace console.Models.Mapping
 
             // Properties
             this.Property(t => t.category_id)
-                .HasDatabaseGeneratedOption(DatabaseGeneratedOption.None);
+                .HasDatabaseGeneratedOption(DatabaseGeneratedOption.Identity);
 
             this.Property(t => t.product_category)
                 .IsRequired()

@@ -29,5 +29,15 @@ namespace DreamTech.Controllers
 
             return View();
         }
+
+        public ActionResult Country()
+        {
+            ViewBag.Message = "Country List";
+
+            var repo = new Repos.CountryRepo();
+            var countryList = repo.GetAllCountries();
+
+            return View(countryList);
+        }
     }
 }

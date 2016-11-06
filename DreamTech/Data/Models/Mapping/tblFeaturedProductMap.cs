@@ -12,7 +12,7 @@ namespace console.Models.Mapping
 
             // Properties
             this.Property(t => t.feature_id)
-                .HasDatabaseGeneratedOption(DatabaseGeneratedOption.None);
+                .HasDatabaseGeneratedOption(DatabaseGeneratedOption.Identity);
 
             // Table & Column Mappings
             this.ToTable("tblFeaturedProduct");
