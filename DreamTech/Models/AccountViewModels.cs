@@ -65,6 +65,14 @@ namespace DreamTech.Models
     public class RegisterViewModel
     {
         [Required]
+        [Display(Name = "First Name")]
+        public string Name { get; set; }
+
+        [Required]
+        [Display(Name = "Last Name")]
+        public string Surname { get; set; }
+
+        [Required]
         [EmailAddress]
         [Display(Name = "Email")]
         public string Email { get; set; }
@@ -79,6 +87,30 @@ namespace DreamTech.Models
         [Display(Name = "Confirm password")]
         [Compare("Password", ErrorMessage = "The password and confirmation password do not match.")]
         public string ConfirmPassword { get; set; }
+
+        [Required]
+        [Display(Name = "Mobile Number")]
+        public string Contact { get; set; }
+
+        [Required]
+        [Display(Name = "Address Line")]
+        public string AddressLine { get; set; }
+
+        [Required]
+        [Display(Name = "Suburb")]
+        public string Suburb { get; set; }
+
+        [Required]
+        [Display(Name = "City")]
+        public string City { get; set; }
+
+        [Required]
+        [Display(Name = "Postal Code")]
+        public string PostalCode { get; set; }
+
+        [Required]
+        [Display(Name = "Country")]
+        public string Country { get; set; }
     }
 
     public class ResetPasswordViewModel

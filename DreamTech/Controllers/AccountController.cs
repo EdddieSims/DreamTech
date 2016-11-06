@@ -9,11 +9,12 @@ using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.Owin;
 using Microsoft.Owin.Security;
 using DreamTech.Models;
+using console.Models;
 
 namespace DreamTech.Controllers
 {
     [Authorize]
-    public class AccountController : Controller
+    public class AccountController : BaseController
     {
         private ApplicationSignInManager _signInManager;
         private ApplicationUserManager _userManager;
@@ -170,6 +171,66 @@ namespace DreamTech.Controllers
 
             // If we got this far, something failed, redisplay form
             return View(model);
+        }
+
+        public tbl_CustomerContact CreateContact(RegisterViewModel model)
+        {
+            var contactRepo = new Repos.CustomerContactRepo();
+            var newContact = new tbl_CustomerContact();
+
+            newContact.cell_number = Convert.ToInt64(model.Contact);
+            newContact.landline = Convert.ToInt64(model.Contact);
+            contactRepo.SaveContact(newContact);
+
+            return newContact;
+        }
+
+        public tbl_BillingAddress CreateBAddress(RegisterViewModel model)
+        {
+            var billingrepo = new Repos.BillingAddressRepo();
+            var newBAddress = new tbl_BillingAddress();
+            newBAddress.address_line = model.AddressLine;
+            newBAddress.suburb = model.Suburb;
+            newBAddress.city = model.City;
+            newBAddress.postal_code = Convert.ToInt32(model.PostalCode);
+            newBAddress.country_id = Convert.ToInt32(model.Country);
+
+            billingrepo.SaveBAddress(newBAddress);
+
+            return newBAddress;
+        }
+
+        public tbl_DelivetyAddresses CreateDAddress(RegisterViewModel model)
+        {
+            var deliveryRepo = new Repos.DeliveryAddressRepo();
+            var newDAddress = new tbl_DelivetyAddresses();
+            newDAddress.address_line = model.AddressLine;
+            newDAddress.suburb = model.Suburb;
+            newDAddress.city = model.City;
+            newDAddress.postal_code = Convert.ToInt32(model.PostalCode);
+            newDAddress.country_id = Convert.ToInt32(model.Country);
+
+            deliveryRepo.SaveDAddress(newDAddress);
+
+            return newDAddress;
+        }
+
+        public tbl_User CreateUser(RegisterViewModel model, tbl_CustomerContact contact, tbl_BillingAddress billing, tbl_DelivetyAddresses delivery)
+        {
+            var userRepo = new Repos.UserRepo();
+            var newUser = new tbl_User();
+
+            newUser.user_name = model.Name;
+            newUser.user_surname = model.Surname;
+            newUser.email_address = model.Email;
+            newUser.password = model.Password;
+            newUser.delivery_id = delivery.delivery_id;
+            newUser.billing_id = billing.billing_id;
+            newUser.contact_id = contact.contact_id;
+
+            userRepo.SaveUser(newUser);
+
+            return newUser;
         }
 
         //

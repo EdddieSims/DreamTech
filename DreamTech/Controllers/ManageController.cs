@@ -11,7 +11,7 @@ using DreamTech.Models;
 namespace DreamTech.Controllers
 {
     [Authorize]
-    public class ManageController : Controller
+    public class ManageController : BaseController
     {
         private ApplicationSignInManager _signInManager;
         private ApplicationUserManager _userManager;
