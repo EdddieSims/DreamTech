@@ -12,10 +12,10 @@ namespace console.Models.Mapping
 
             // Properties
             this.Property(t => t.opt_id)
-                .HasDatabaseGeneratedOption(DatabaseGeneratedOption.None);
+                .HasDatabaseGeneratedOption(DatabaseGeneratedOption.Identity);
 
             // Table & Column Mappings
-            this.ToTable("tbl.OptIn");
+            this.ToTable("tblOptIn");
             this.Property(t => t.opt_id).HasColumnName("opt_id");
             this.Property(t => t.user_id).HasColumnName("user_id");
             this.Property(t => t.opt_type_id).HasColumnName("opt_type_id");

@@ -12,14 +12,14 @@ namespace console.Models.Mapping
 
             // Properties
             this.Property(t => t.order_item_id)
-                .HasDatabaseGeneratedOption(DatabaseGeneratedOption.None);
+                .HasDatabaseGeneratedOption(DatabaseGeneratedOption.Identity);
 
             this.Property(t => t.item_reference)
                 .IsRequired()
                 .HasMaxLength(50);
 
             // Table & Column Mappings
-            this.ToTable("tbl.OrderItems");
+            this.ToTable("tblOrderItems");
             this.Property(t => t.order_item_id).HasColumnName("order_item_id");
             this.Property(t => t.item_reference).HasColumnName("item_reference");
             this.Property(t => t.product_id).HasColumnName("product_id");

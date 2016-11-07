@@ -12,7 +12,7 @@ namespace console.Models.Mapping
 
             // Properties
             this.Property(t => t.delivery_id)
-                .HasDatabaseGeneratedOption(DatabaseGeneratedOption.None);
+                .HasDatabaseGeneratedOption(DatabaseGeneratedOption.Identity);
 
             this.Property(t => t.address_line)
                 .IsRequired()
@@ -27,7 +27,7 @@ namespace console.Models.Mapping
                 .HasMaxLength(255);
 
             // Table & Column Mappings
-            this.ToTable("tbl.DelivetyAddresses");
+            this.ToTable("tblDelivetyAddresses");
             this.Property(t => t.delivery_id).HasColumnName("delivery_id");
             this.Property(t => t.address_line).HasColumnName("address_line");
             this.Property(t => t.suburb).HasColumnName("suburb");

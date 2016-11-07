@@ -12,10 +12,10 @@ namespace console.Models.Mapping
 
             // Properties
             this.Property(t => t.wishlist_id)
-                .HasDatabaseGeneratedOption(DatabaseGeneratedOption.None);
+                .HasDatabaseGeneratedOption(DatabaseGeneratedOption.Identity);
 
             // Table & Column Mappings
-            this.ToTable("tbl.Wishlist");
+            this.ToTable("tblWishlist");
             this.Property(t => t.wishlist_id).HasColumnName("wishlist_id");
             this.Property(t => t.user_id).HasColumnName("user_id");
 

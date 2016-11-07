@@ -12,13 +12,13 @@ namespace console.Models.Mapping
 
             // Properties
             this.Property(t => t.type_id)
-                .HasDatabaseGeneratedOption(DatabaseGeneratedOption.None);
+                .HasDatabaseGeneratedOption(DatabaseGeneratedOption.Identity);
 
             this.Property(t => t.product_type)
                 .HasMaxLength(255);
 
             // Table & Column Mappings
-            this.ToTable("tbl.ProductType");
+            this.ToTable("tblProductType");
             this.Property(t => t.type_id).HasColumnName("type_id");
             this.Property(t => t.product_type).HasColumnName("product_type");
         }

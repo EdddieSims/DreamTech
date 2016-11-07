@@ -12,7 +12,7 @@ namespace console.Models.Mapping
 
             // Properties
             // Table & Column Mappings
-            this.ToTable("tbl.WishlistItem");
+            this.ToTable("tblWishlistItem");
             this.Property(t => t.wishlist_item_id).HasColumnName("wishlist_item_id");
             this.Property(t => t.user_id).HasColumnName("user_id");
             this.Property(t => t.product_id).HasColumnName("product_id");

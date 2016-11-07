@@ -12,10 +12,10 @@ namespace console.Models.Mapping
 
             // Properties
             this.Property(t => t.contact_id)
-                .HasDatabaseGeneratedOption(DatabaseGeneratedOption.None);
+                .HasDatabaseGeneratedOption(DatabaseGeneratedOption.Identity);
 
             // Table & Column Mappings
-            this.ToTable("tbl.CustomerContact");
+            this.ToTable("tblCustomerContact");
             this.Property(t => t.contact_id).HasColumnName("contact_id");
             this.Property(t => t.cell_number).HasColumnName("cell_number");
             this.Property(t => t.landline).HasColumnName("landline");

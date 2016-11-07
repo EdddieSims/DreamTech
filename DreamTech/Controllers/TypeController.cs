@@ -6,9 +6,9 @@ using System.Web.Mvc;
 
 namespace DreamTech.Controllers
 {
-    public class CartController : BaseController
+    public class TypeController : BaseController
     {
-        // GET: Cart
+        // GET: Type
         public ActionResult Index()
         {
             return View();
