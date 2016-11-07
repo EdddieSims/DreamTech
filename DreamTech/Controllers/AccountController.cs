@@ -74,22 +74,37 @@ namespace DreamTech.Controllers
                 return View(model);
             }
 
+
+            var repo = new Repos.UserRepo();
+            var user = repo.GetLoginDetails(model.Email, model.Password);
+
+            if (user == null)
+            {
+                ModelState.AddModelError("", "Invalid login attempt.");
+                return View(model);
+            }
+            else
+            {
+                System.Web.Security.FormsAuthentication.SetAuthCookie(model.Email, false);
+                return RedirectToLocal(returnUrl);
+            }
+
             // This doesn't count login failures towards account lockout
             // To enable password failures to trigger account lockout, change to shouldLockout: true
-            var result = await SignInManager.PasswordSignInAsync(model.Email, model.Password, model.RememberMe, shouldLockout: false);
-            switch (result)
-            {
-                case SignInStatus.Success:
-                    return RedirectToLocal(returnUrl);
-                case SignInStatus.LockedOut:
-                    return View("Lockout");
-                case SignInStatus.RequiresVerification:
-                    return RedirectToAction("SendCode", new { ReturnUrl = returnUrl, RememberMe = model.RememberMe });
-                case SignInStatus.Failure:
-                default:
-                    ModelState.AddModelError("", "Invalid login attempt.");
-                    return View(model);
-            }
+            //var result = await SignInManager.PasswordSignInAsync(model.Email, model.Password, model.RememberMe, shouldLockout: false);
+            //switch (result)
+            //{
+            //    case SignInStatus.Success:
+            //        return RedirectToLocal(returnUrl);
+            //    case SignInStatus.LockedOut:
+            //        return View("Lockout");
+            //    case SignInStatus.RequiresVerification:
+            //        return RedirectToAction("SendCode", new { ReturnUrl = returnUrl, RememberMe = model.RememberMe });
+            //    case SignInStatus.Failure:
+            //    default:
+            //        ModelState.AddModelError("", "Invalid login attempt.");
+            //        return View(model);
+            //}
         }
 
         //
@@ -152,21 +167,31 @@ namespace DreamTech.Controllers
         {
             if (ModelState.IsValid)
             {
-                var user = new ApplicationUser { UserName = model.Email, Email = model.Email };
-                var result = await UserManager.CreateAsync(user, model.Password);
-                if (result.Succeeded)
+                var userRepo = new Repos.UserRepo();
+                var billingrepo = new Repos.BillingAddressRepo();
+                var deliveryRepo = new Repos.DeliveryAddressRepo();
+                var contactRepo = new Repos.CustomerContactRepo();
+
+                //Checking if email already exists
+                var userEmail = model.Email;
+                var result = userRepo.GetUser(userEmail);
+
+                if (result == null)
                 {
-                    await SignInManager.SignInAsync(user, isPersistent:false, rememberBrowser:false);
-                    
-                    // For more information on how to enable account confirmation and password reset please visit http://go.microsoft.com/fwlink/?LinkID=320771
-                    // Send an email with this link
-                    // string code = await UserManager.GenerateEmailConfirmationTokenAsync(user.Id);
-                    // var callbackUrl = Url.Action("ConfirmEmail", "Account", new { userId = user.Id, code = code }, protocol: Request.Url.Scheme);
-                    // await UserManager.SendEmailAsync(user.Id, "Confirm your account", "Please confirm your account by clicking <a href=\"" + callbackUrl + "\">here</a>");
+                    var contact = CreateContact(model);
+                    var billing = CreateBAddress(model);
+                    var delivery = CreateDAddress(model);
+
+                    var user = CreateUser(model, contact, billing, delivery);
 
                     return RedirectToAction("Index", "Home");
                 }
-                AddErrors(result);
+                else
+                {
+                    return RedirectToAction("Register", "Account");
+                    //AddErrors();
+                }
+
             }
 
             // If we got this far, something failed, redisplay form
@@ -452,7 +477,7 @@ namespace DreamTech.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult LogOff()
         {
-            AuthenticationManager.SignOut(DefaultAuthenticationTypes.ApplicationCookie);
+            System.Web.Security.FormsAuthentication.SignOut();
             return RedirectToAction("Index", "Home");
         }
 
