@@ -5,28 +5,30 @@
 
 <div class="jumbotron">
 </div>
-
-@if (Model.Any())
+@using (Html.BeginForm("Index", "Home"))
 {
-    foreach (var prod in Model)
+    if (Model.Any())
     {
-
-        <div class="col-sm-6 col-md-4">
-            <div class="thumbnail">
-                <img src="..." alt="...">
-                <div class="caption">
-                    <h3>@prod.name</h3>
-                    <p>@prod.description</p>
-                    <p>
-                        <a href="#" class="btn btn-primary" role="button">Add to Cart</a>
-                        <a href="#" class="btn btn-default" role="button">Add to Wishlist</a>
-                    </p>
+        foreach (var prod in Model)
+        {
+            <div class="col-sm-6 col-md-4">
+                <div class="thumbnail">
+                    <img src="..." alt="...">
+                    <div class="caption">
+                        <h3>@prod.name</h3>
+                        <p>@prod.description</p>
+                        <p>
+                            @Html.ActionLink("Add to Cart", "AddProd", new { data_modal = "", id = prod.product_id}, new { @class = "btn btn-small btn-primary" })
+                            @*<input type="submit" value="Add to Cart" class="btn btn-primary" role="button">*@
+                            <a href="#" class="btn btn-default" role="button">Add to Wishlist</a>
+                        </p>
+                    </div>
                 </div>
             </div>
-        </div>
+        }
     }
-}
-else
-{
-    <text>No items found!</text>
+    else
+    {
+        <p>No Items found!</p>
+    }
 }

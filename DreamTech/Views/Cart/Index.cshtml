@@ -2,6 +2,9 @@
 
 @{
     ViewBag.Title = "Cart";
+
+    var products = ((List<console.Models.tblProduct>)Session["CartItems"]);
+
 }
 
 <div class="panel panel-primary">
@@ -20,6 +23,37 @@
                 <th>Sub Total</th>
             </tr>
         </thead>
+        <tbody>
+            @if (products == null)
+            {
+                <tr>
+                    <td>no products in cart</td>
+                </tr>
+            }
+            else
+            {
+                foreach (var prod in products)
+                {
+                    <tr>
+                        <td>@prod.name</td>
+                        <td>Yes</td>
+                        <td>@prod.categoty_id</td>
+                        <td>1</td>
+                        <td>@prod.price_id</td>
+                        <td>R 100</td>
+                    </tr>
+                }
+
+                <tr>
+                    <th>Total</th>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <th>R 100</th>
+                </tr>
+            }
+        </tbody>
     </table>
 </div>
 

@@ -8,10 +8,15 @@ namespace DreamTech.Controllers
 {
     public class HomeController : BaseController
     {
-        public ActionResult Index()
+        public ActionResult Index(int? id)
         {
             var repo = new Repos.ProductRepo();
             var prodList = repo.GetAllProducts();
+
+            if(id != null)
+            {
+                AddProd(id);
+            }
 
             return View(prodList);
         }
@@ -28,6 +33,14 @@ namespace DreamTech.Controllers
             ViewBag.Message = "Your contact page.";
 
             return View();
+        }
+
+        public void AddProd(int? id)
+        {
+            var cartObject = (Session["CartItems"] as List<int?>) ?? new List<int?>();
+            cartObject.Add(id);
+
+            Session["CartItems"] = cartObject;
         }
 
         public ActionResult Country()

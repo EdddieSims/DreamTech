@@ -36,6 +36,19 @@ namespace DreamTech.Repos
             }
         }
 
+        //public btl_ProductPrice GetMultiplePrices(List<int> priceId)
+        //{
+        //    using (var context = new console.Models.dream_techContext())
+        //    {
+        //        List<decimal> priceList;
+        //        foreach(int id in priceId)
+        //        {
+        //            priceList = (from p in context.btl_ProductPrice where p.price_id == id select p).SingleOrDefault();
+        //        }
+        //        return (from p in context.btl_ProductPrice where p.price_id == id select p).SingleOrDefault();
+        //    }
+        //}
+
         public bool UpdatePrice(console.Models.btl_ProductPrice entity)
         {
             bool result = false;

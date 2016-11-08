@@ -41,5 +41,13 @@ namespace DreamTech.Controllers
 
             base.OnActionExecuting(filterContext);
         }
+
+        public void  getSession()
+        {
+            var repo = new Repos.ProductRepo();
+            var prodList = repo.GetAllProducts();
+
+            Session["CartItems"] = prodList;
+        }
     }
 }
