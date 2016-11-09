@@ -12,7 +12,16 @@ namespace DreamTech.Repos
         {
             using (var context = new console.Models.dream_techContext())
             {
-                return context.tblProducts.Where(t => t.product_id > 0).ToList();
+                return context.tblProducts.Include("tblProductCategory").Include("btl_ProductPrice").Where(t => t.product_id > 0).ToList();
+            }
+        }
+
+        public List<console.Models.tblProduct> GetProductByName(string name)
+        {
+            using (var context = new console.Models.dream_techContext())
+            {
+                var products = context.tblProducts.Include("tblProductCategory").Include("btl_ProductPrice").Where(t => t.name.StartsWith(name)).ToList();
+                return products;
             }
         }
 
@@ -36,11 +45,24 @@ namespace DreamTech.Repos
             }
         }
 
+        public List<tblProduct> GetMutipleProducts(List<int?> idList)
+        {
+            
+            using (var context = new console.Models.dream_techContext())
+            {
+                var products = context.tblProducts.Include("tblProductCategory").Include("btl_ProductPrice").Where(p => idList.Contains(p.product_id)).ToList();
+                return products;
+            }
+
+            
+        }
+
         public List<console.Models.tblProduct> GetProductsByCategory(int? id)
         {
             using (var context = new console.Models.dream_techContext())
             {
-                return (from p in context.tblProducts where p.categoty_id == id select p).ToList();
+                var product = context.tblProducts.Include("tblProductCategory").Include("btl_ProductPrice").Where(p => p.categoty_id == id).ToList();
+                return product;
             }
         }
 

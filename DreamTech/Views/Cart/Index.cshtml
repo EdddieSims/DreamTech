@@ -1,10 +1,10 @@
-﻿@model console.Models.tbl_Cart
+﻿@model List<console.Models.tblProduct>
 
 @{
     ViewBag.Title = "Cart";
 
-    var products = ((List<console.Models.tblProduct>)Session["CartItems"]);
-
+    decimal totalDue = 0;
+    decimal amount = 0;
 }
 
 <div class="panel panel-primary">
@@ -24,7 +24,7 @@
             </tr>
         </thead>
         <tbody>
-            @if (products == null)
+            @if (Model == null)
             {
                 <tr>
                     <td>no products in cart</td>
@@ -32,15 +32,19 @@
             }
             else
             {
-                foreach (var prod in products)
+                foreach (var prod in Model)
                 {
+                    amount = Convert.ToDecimal(prod.btl_ProductPrice.product_price);
+                    amount = decimal.Round(amount, 2);
+
+                    totalDue = totalDue + amount;
                     <tr>
                         <td>@prod.name</td>
                         <td>Yes</td>
-                        <td>@prod.categoty_id</td>
+                        <td>@prod.tblProductCategory.product_category</td>
                         <td>1</td>
-                        <td>@prod.price_id</td>
-                        <td>R 100</td>
+                        <td>R @amount</td>
+                        <td>R @amount</td>
                     </tr>
                 }
 
@@ -50,9 +54,9 @@
                     <td></td>
                     <td></td>
                     <td></td>
-                    <th>R 100</th>
+                    <th>R @totalDue</th>
                 </tr>
-            }
+                }
         </tbody>
     </table>
 </div>

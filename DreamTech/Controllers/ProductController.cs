@@ -25,10 +25,12 @@ namespace DreamTech.Controllers
             }
         }
 
-        public ActionResult SearchById()
+        public ActionResult SearchByName(string name)
         {
+            var repo = new Repos.ProductRepo();
+            var prodList = repo.GetProductByName(name);
 
-            return View();
+            return View("Index", prodList);
         }
 
         public ActionResult NewProducts()

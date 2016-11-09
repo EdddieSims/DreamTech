@@ -1,6 +1,8 @@
 ﻿@model List<console.Models.tblProduct>
 @{
     ViewBag.Title = "Home";
+
+    decimal price = 0;
 }
 
 <div class="jumbotron">
@@ -11,16 +13,18 @@
     {
         foreach (var prod in Model)
         {
+            price = Convert.ToDecimal(prod.btl_ProductPrice.product_price);
+            price = decimal.Round(price, 2);
             <div class="col-sm-6 col-md-4">
                 <div class="thumbnail">
                     <img src="..." alt="...">
                     <div class="caption">
                         <h3>@prod.name</h3>
                         <p>@prod.description</p>
+                        <p>R @price</p>
                         <p>
-                            @Html.ActionLink("Add to Cart", "AddProd", new { data_modal = "", id = prod.product_id}, new { @class = "btn btn-small btn-primary" })
-                            @*<input type="submit" value="Add to Cart" class="btn btn-primary" role="button">*@
-                            <a href="#" class="btn btn-default" role="button">Add to Wishlist</a>
+                            @Html.ActionLink("Add to Cart", "AddProdToCart", new { data_modal = "", id = prod.product_id}, new { @class = "btn btn-small btn-primary" })
+                            @Html.ActionLink("Add to Wishlist", "AddProdToWish", new { data_modal = "", id = prod.product_id }, new { @class = "btn btn-small btn-default" })
                         </p>
                     </div>
                 </div>
