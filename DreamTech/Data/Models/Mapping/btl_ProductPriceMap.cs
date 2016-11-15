@@ -15,7 +15,7 @@ namespace console.Models.Mapping
                 .HasDatabaseGeneratedOption(DatabaseGeneratedOption.Identity);
 
             // Table & Column Mappings
-            this.ToTable("btlProductPrice");
+            this.ToTable("tblProductPrice");
             this.Property(t => t.price_id).HasColumnName("price_id");
             this.Property(t => t.product_price).HasColumnName("product_price");
         }

@@ -36,6 +36,15 @@ namespace DreamTech.Repos
             }
         }
 
+        public List<btl_ProductPrice> GetMultiplePrices(List<int> priceId)
+        {
+            using (var context = new console.Models.dream_techContext())
+            {
+                var price = context.btl_ProductPrice.Where(p => priceId.Contains(p.price_id)).ToList();
+                return price;
+            }
+        }
+
         public bool UpdatePrice(console.Models.btl_ProductPrice entity)
         {
             bool result = false;

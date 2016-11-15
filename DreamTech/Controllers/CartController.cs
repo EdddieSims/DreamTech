@@ -11,7 +11,12 @@ namespace DreamTech.Controllers
         // GET: Cart
         public ActionResult Index()
         {
-            return View();
+            List<int?> list = (Session["CartItems"] as List<int?>) ?? new List<int?>();
+
+            var repo = new Repos.ProductRepo();
+            var prodList = repo.GetMutipleProducts(list);
+
+            return View(prodList);
         }
     }
 }

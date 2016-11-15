@@ -1,32 +1,38 @@
 ﻿@model List<console.Models.tblProduct>
 @{
     ViewBag.Title = "Home";
+
+    decimal price = 0;
 }
 
 <div class="jumbotron">
 </div>
-
-@if (Model.Any())
+@using (Html.BeginForm("Index", "Home"))
 {
-    foreach (var prod in Model)
+    if (Model.Any())
     {
-
-        <div class="col-sm-6 col-md-4">
-            <div class="thumbnail">
-                <img src="..." alt="...">
-                <div class="caption">
-                    <h3>@prod.name</h3>
-                    <p>@prod.description</p>
-                    <p>
-                        <a href="#" class="btn btn-primary" role="button">Add to Cart</a>
-                        <a href="#" class="btn btn-default" role="button">Add to Wishlist</a>
-                    </p>
+        foreach (var prod in Model)
+        {
+            price = Convert.ToDecimal(prod.btl_ProductPrice.product_price);
+            price = decimal.Round(price, 2);
+            <div class="col-sm-6 col-md-4">
+                <div class="thumbnail">
+                    <img src="..." alt="...">
+                    <div class="caption">
+                        <h3>@prod.name</h3>
+                        <p>@prod.description</p>
+                        <p>R @price</p>
+                        <p>
+                            @Html.ActionLink("Add to Cart", "AddProdToCart", new { data_modal = "", id = prod.product_id}, new { @class = "btn btn-small btn-primary" })
+                            @Html.ActionLink("Add to Wishlist", "AddProdToWish", new { data_modal = "", id = prod.product_id }, new { @class = "btn btn-small btn-default" })
+                        </p>
+                    </div>
                 </div>
             </div>
-        </div>
+        }
     }
-}
-else
-{
-    <text>No items found!</text>
+    else
+    {
+        <p>No Items found!</p>
+    }
 }
