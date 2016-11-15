@@ -1,7 +1,8 @@
-﻿@model List<console.Models.tblFeaturedProduct>
+﻿@model List<console.Models.tblProduct>
 
 @{
     ViewBag.Title = "FeaturedProduct";
+    decimal amount = 0;
 }
 
 <h2>Featured Products</h2>
@@ -10,16 +11,19 @@
 {
     foreach (var prod in Model)
     {
+        amount = Convert.ToDecimal(@prod.btl_ProductPrice.product_price);
+        amount = decimal.Round(amount, 2);
 
         <div class="col-sm-6 col-md-4">
             <div class="thumbnail">
                 <img src="..." alt="...">
                 <div class="caption">
-                    <h3>@prod.feature_id</h3>
-                    <p>@prod.product_id</p>
+                    <h3>@prod.name</h3>
+                    <p>@prod.tblProductCategory.product_category</p>
+                    <p>R @amount</p>
                     <p>
-                        <a href="#" class="btn btn-primary" role="button">Add to Cart</a>
-                        <a href="#" class="btn btn-default" role="button">Add to Wishlist</a>
+                        @Html.ActionLink("Add to Cart", "AddProdToCart", new { data_modal = "", id = prod.product_id }, new { @class = "btn btn-small btn-primary" })
+                        @Html.ActionLink("Add to Wishlist", "AddProdToWish", new { data_modal = "", id = prod.product_id }, new { @class = "btn btn-small btn-default" })
                     </p>
                 </div>
             </div>

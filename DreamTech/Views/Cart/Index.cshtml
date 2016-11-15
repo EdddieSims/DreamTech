@@ -1,7 +1,10 @@
-﻿@model console.Models.tbl_Cart
+﻿@model List<console.Models.tblProduct>
 
 @{
     ViewBag.Title = "Cart";
+
+    decimal totalDue = 0;
+    decimal amount = 0;
 }
 
 <div class="panel panel-primary">
@@ -20,12 +23,52 @@
                 <th>Sub Total</th>
             </tr>
         </thead>
+        <tbody>
+            @if (Model.Count == 0)
+            {
+                <tr>
+                    <td>no products in cart</td>
+                </tr>
+            }
+            else
+            {
+                foreach (var prod in Model)
+                {
+                    amount = Convert.ToDecimal(prod.btl_ProductPrice.product_price);
+                    amount = decimal.Round(amount, 2);
+
+                    totalDue = totalDue + amount;
+                    <tr>
+                        <td>@prod.name</td>
+                        <td>Yes</td>
+                        <td>@prod.tblProductCategory.product_category</td>
+                        <td>1</td>
+                        <td>R @amount</td>
+                        <td>R @amount</td>
+                    </tr>
+                }
+
+                <tr>
+                    <th>Total</th>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <th>R @totalDue</th>
+                </tr>
+            }
+        </tbody>
     </table>
 </div>
 
-
-<div class="form-group">
+@if (Model.Count == 0)
+{
+}
+else
+{
     <div class="text-right">
         <input type="submit" value="Check Out" class="btn btn-primary" />
+        &nbsp;
+        <input type="submit" value="Rmove Item" class="btn btn-default" />
     </div>
-</div>
+}

@@ -1,7 +1,10 @@
-﻿@model console.Models.tbl_Wishlist
+﻿@model List<console.Models.tblProduct>
 
 @{
     ViewBag.Title = "Wishlist";
+
+    decimal totalDue = 0;
+    decimal amount = 0;
 }
 
 <div class="panel panel-primary">
@@ -16,18 +19,50 @@
                 <th>Availabilty</th>
                 <th>Department</th>
                 <th>Unit Price</th>
-                <th>Sub Total</th>
             </tr>
         </thead>
+        <tbody>
+            @if (Model == null)
+            {
+                <tr>
+                    <td>no products in wishlsit</td>
+                </tr>
+            }
+            else
+            {
+                foreach (var prod in Model)
+                {
+                    amount = Convert.ToDecimal(prod.btl_ProductPrice.product_price);
+                    amount = decimal.Round(amount, 2);
+
+                    totalDue = totalDue + amount;
+                    <tr>
+                        <td>@prod.name</td>
+                        <td>Yes</td>
+                        <td>@prod.tblProductCategory.product_category</td>
+                        <td>R @amount</td>
+                    </tr>
+                }
+
+                <tr>
+                    <th>Total</th>
+                    <td></td>
+                    <td></td>
+                    <th>R @totalDue</th>
+                </tr>
+            }
+        </tbody>
     </table>
 </div>
 
-<<<<<<< HEAD
-<div class="form-group">
+@if (Model.Count == 0)
+{
+}
+else
+{
     <div class="text-right">
         <input type="submit" value="Add to Cart" class="btn btn-primary" />
+        &nbsp;
+        <input type="submit" value="Rmove Item" class="btn btn-default" />
     </div>
-</div>
-
-=======
->>>>>>> e8eaea3c65c7e46889a3d27d761f1ef3c984a03a
+}

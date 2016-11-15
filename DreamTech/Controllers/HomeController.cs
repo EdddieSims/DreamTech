@@ -10,10 +10,7 @@ namespace DreamTech.Controllers
     {
         public ActionResult Index()
         {
-            var repo = new Repos.ProductRepo();
-            var prodList = repo.GetAllProducts();
-
-            return View(prodList);
+            return View(getAll());
         }
 
         public ActionResult About()
@@ -38,6 +35,14 @@ namespace DreamTech.Controllers
             var countryList = repo.GetAllCountries();
 
             return View(countryList);
+        }
+
+        public ActionResult Form(string name)
+        {
+            var repo = new Repos.ProductRepo();
+            var prodList = repo.GetProductByName(name);
+
+            return View("Index", prodList);
         }
     }
 }

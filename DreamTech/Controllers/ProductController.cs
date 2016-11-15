@@ -25,11 +25,7 @@ namespace DreamTech.Controllers
             }
         }
 
-        public ActionResult SearchById()
-        {
 
-            return View();
-        }
 
         public ActionResult NewProducts()
         {
@@ -41,7 +37,9 @@ namespace DreamTech.Controllers
             var repo = new Repos.FeaturedProductRepo();
             var fProdList = repo.GetAllActiveFeaturedProducts();
 
-            return View(fProdList);
+            var prodList = getFeaturedProd(fProdList);
+
+            return View(prodList);
         }
     }
 }
