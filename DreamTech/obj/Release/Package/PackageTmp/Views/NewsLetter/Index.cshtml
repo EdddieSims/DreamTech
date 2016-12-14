@@ -1,0 +1,40 @@
+﻿@model List<console.Models.tbl_OptInType>
+
+@{
+    ViewBag.Title = "OptIn";
+}
+
+<h2>OptIn News Letters</h2>
+
+<div>
+    @if (Model.Any())
+    {
+        <table>
+            <thead>
+                <tr>
+                    <th width="25px">Select</th>
+                    <th>Category</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var cat in Model)
+                {
+                    <tr>
+                        <td>
+                            <span class="input-group-addon">
+                                <input type="checkbox" aria-label="...">
+                            </span>
+                        </td>
+                        <td>@cat.optin_category</td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    }
+    else
+    {
+        <text>No items found!</text>
+    }
+    <br />
+    <button type="submit" class="btn btn-primary">Subscribe</button>
+</div>

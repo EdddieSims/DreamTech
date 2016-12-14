@@ -29,7 +29,9 @@ namespace DreamTech.Controllers
 
         public ActionResult NewProducts()
         {
-            return View();
+            var repo = new Repos.ProductRepo();
+            var prodList = repo.GetAllProducts();
+            return View(prodList);
         }
 
         public ActionResult FeaturedProduct()

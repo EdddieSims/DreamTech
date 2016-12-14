@@ -28,6 +28,21 @@ namespace DreamTech.Repos
             return result;
         }
 
+        public bool SaveCartItems(List<console.Models.tbl_CartItem> entities)
+        {
+            bool result = false;
+            foreach(var entity in entities)
+            {
+                using (var context = new console.Models.dream_techContext())
+                {
+                    context.tbl_CartItem.Add(entity);
+                    result = context.SaveChanges() > 1;
+                }
+            }
+            
+            return result;
+        }
+
         public tbl_CartItem GetCartItem(string refernce, int id)
         {
             using (var context = new console.Models.dream_techContext())

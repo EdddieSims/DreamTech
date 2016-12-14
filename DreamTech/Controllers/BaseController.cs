@@ -60,6 +60,13 @@ namespace DreamTech.Controllers
             return View("Index", getAll());
         }
 
+        public ActionResult RemoveProdsFromCart()
+        {
+            Session["CartItems"] = null;
+
+            return View("Index");
+        }
+
         public ActionResult AddProdToWish(int? id)
         {
             var wishObject = (Session["WishItems"] as List<int?>) ?? new List<int?>();
@@ -101,6 +108,22 @@ namespace DreamTech.Controllers
             prodList = repo.GetMutipleProducts(allId);
 
             return prodList;
+        }
+
+        public console.Models.tbl_User FindUser(DreamTech.Models.LoginViewModel model)
+        {
+            var repo = new Repos.UserRepo();
+            var user = repo.GetLoginDetails(model.Email, model.Password);
+
+            if (user == null)
+            {
+                return null;
+            }
+            else
+            {
+                return user;
+            }
+            
         }
     }
 }

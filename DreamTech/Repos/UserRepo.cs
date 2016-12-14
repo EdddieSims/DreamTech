@@ -36,6 +36,14 @@ namespace DreamTech.Repos
             }
         }
 
+        public tbl_User GetUserById(int id)
+        {
+            using (var context = new console.Models.dream_techContext())
+            {
+                return (from t in context.tbl_User where t.user_id == id select t).SingleOrDefault();
+            }
+        }
+
         public tbl_User GetLoginDetails(string email, string password)
         {
             using (var context = new console.Models.dream_techContext())

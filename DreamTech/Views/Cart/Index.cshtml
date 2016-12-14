@@ -7,68 +7,76 @@
     decimal amount = 0;
 }
 
+@using (Html.BeginForm("CheckOut", "Cart"))
+{
 <div class="panel panel-primary">
     <!-- Default panel contents -->
     <div class="panel-heading"><h4>My Cart</h4></div>
 
-    <!-- Table -->
-    <table class="table">
-        <thead>
-            <tr>
-                <th>Item Description</th>
-                <th>Availabilty</th>
-                <th>Department</th>
-                <th>Quantity</th>
-                <th>Unit Price</th>
-                <th>Sub Total</th>
-            </tr>
-        </thead>
-        <tbody>
-            @if (Model.Count == 0)
-            {
-                <tr>
-                    <td>no products in cart</td>
-                </tr>
-            }
-            else
-            {
-                foreach (var prod in Model)
-                {
-                    amount = Convert.ToDecimal(prod.btl_ProductPrice.product_price);
-                    amount = decimal.Round(amount, 2);
 
-                    totalDue = totalDue + amount;
+        <!-- Table -->
+        <table class="table">
+            <thead>
+                <tr>
+                    <td>@Html.CheckBox("Select All", false) <b>Select All</b></td>
+                    <th>Item Description</th>
+                    <th>Availabilty</th>
+                    <th>Department</th>
+                    <th>Quantity</th>
+                    <th>Unit Price</th>
+                    <th>Sub Total</th>
+                </tr>
+            </thead>
+            <tbody>
+                @if (Model.Count == 0)
+                {
                     <tr>
-                        <td>@prod.name</td>
-                        <td>Yes</td>
-                        <td>@prod.tblProductCategory.product_category</td>
-                        <td>1</td>
-                        <td>R @amount</td>
-                        <td>R @amount</td>
+                        <td>no products in cart</td>
                     </tr>
                 }
+                else
+                {
+                    foreach (var prod in Model)
+                    {
+                        amount = Convert.ToDecimal(prod.btl_ProductPrice.product_price);
+                        amount = decimal.Round(amount, 2);
 
-                <tr>
-                    <th>Total</th>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <th>R @totalDue</th>
-                </tr>
-            }
-        </tbody>
-    </table>
-</div>
+                        totalDue = totalDue + amount;
+                        <tr>
+                            <td>@Html.CheckBox("Prod" + @prod.product_id, false, new { @prod.product_id })</td>
+                            <td>@prod.name</td>
+                            <td>Yes</td>
+                            <td>@prod.tblProductCategory.product_category</td>
+                            <td>1</td>
+                            <td>R @amount</td>
+                            <td>R @amount</td>
+                        </tr>
+                    }
 
-@if (Model.Count == 0)
-{
-}
-else
-{
-    <div class="text-right">
-        <input type="submit" value="Check Out" class="btn btn-primary" />
-        &nbsp;
-        <input type="submit" value="Rmove Item" class="btn btn-default" />
+                    <tr>
+                        <th>Total</th>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <th>R @totalDue</th>
+                    </tr>
+                }
+            </tbody>
+        </table>
     </div>
+
+    if (Model.Count == 0)
+    {
+    }
+    else
+    {
+        <div class="text-right">
+            @*<input type="submit" value="Check Out" class="btn btn-primary" />*@
+            @Html.ActionLink("Check Out", "CheckOut", new { totalDue = @totalDue}, new { @class = "btn btn-small btn-primary" })
+            &nbsp;
+            <input type="submit" value="Rmove Item" class="btn btn-default" />
+        </div>
+    }
 }

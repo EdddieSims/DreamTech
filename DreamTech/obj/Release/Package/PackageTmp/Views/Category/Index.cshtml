@@ -1,0 +1,35 @@
+﻿@model List<console.Models.tblProductCategory>
+
+@{
+    ViewBag.Title = "Category";
+}
+
+<h2>All Categories</h2>
+
+<div>
+    @if (Model.Any())
+    {
+        <table>
+            <thead>
+                <tr>
+                    <th>Id</th>
+                    <th>Category</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var cat in Model)
+                {
+                    <tr>
+                        <td>@cat.category_id</td>
+                        <td>@cat.product_category</td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    }
+    else
+    {
+        <text>No items found!</text>
+    }
+</div>
+
