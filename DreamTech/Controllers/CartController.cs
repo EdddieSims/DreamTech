@@ -36,6 +36,7 @@ namespace DreamTech.Controllers
             console.Models.tbl_CartItem item = new console.Models.tbl_CartItem();
             List<console.Models.tbl_CartItem> items = new List<console.Models.tbl_CartItem>();
             var repo = new Repos.CartItemRepo();
+            int count = 0;
 
             string reference = prodList.Count().ToString();
             DateTime now = DateTime.Now;
@@ -47,7 +48,8 @@ namespace DreamTech.Controllers
                 item.product_id = product.product_id;
                 item.quantity = 1;
 
-                items.Add(item);
+                items.Insert(count, item);
+                count++;
             }
 
             repo.SaveCartItems(items);
