@@ -9,6 +9,9 @@ namespace DreamTech.Controllers
 {
     public class BaseController : Controller
     {
+        private ApplicationSignInManager _signInManager;
+        private ApplicationUserManager _userManager;
+
         // GET: Base
         private List<tblCountry> _countries;
         protected List<tblCountry> Countries
@@ -64,7 +67,7 @@ namespace DreamTech.Controllers
         {
             Session["CartItems"] = null;
 
-            return View("Index");
+            return View("../Home/Index");
         }
 
         public ActionResult AddProdToWish(int? id)
@@ -123,7 +126,25 @@ namespace DreamTech.Controllers
             {
                 return user;
             }
-            
+        }
+
+        public bool CheckLogin()
+        {
+            bool check = false;
+            if (_userManager != null || _signInManager != null)
+            {
+                _userManager = null;
+                _signInManager = null;
+
+                check = true;
+            }
+
+            return check;
+        }
+
+        public ActionResult RedirectToLogIn()
+        {
+            return View("../Account/Login");
         }
     }
 }

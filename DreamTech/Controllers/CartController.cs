@@ -21,14 +21,23 @@ namespace DreamTech.Controllers
 
         public ActionResult CheckOut(decimal? totalDue)
         {
-            List<int?> list = (Session["CartItems"] as List<int?>) ?? new List<int?>();
+            var isLogged = CheckLogin();
 
-            var repo = new Repos.ProductRepo();
-            var prodList = repo.GetMutipleProducts(list);
+            if(isLogged == true)
+            {
+                List<int?> list = (Session["CartItems"] as List<int?>) ?? new List<int?>();
 
-            SaveItems(prodList, totalDue);
+                var repo = new Repos.ProductRepo();
+                var prodList = repo.GetMutipleProducts(list);
 
-            return View("Index", prodList);
+                SaveItems(prodList, totalDue);
+
+                return View("Index", prodList);
+            }
+            else
+            {
+                return RedirectToAction("Login", "Account");
+            }
         }
 
         public void SaveItems(List<console.Models.tblProduct> prodList , decimal? totalDue)
@@ -36,7 +45,6 @@ namespace DreamTech.Controllers
             console.Models.tbl_CartItem item = new console.Models.tbl_CartItem();
             List<console.Models.tbl_CartItem> items = new List<console.Models.tbl_CartItem>();
             var repo = new Repos.CartItemRepo();
-            int count = 0;
 
             string reference = prodList.Count().ToString();
             DateTime now = DateTime.Now;
@@ -48,8 +56,7 @@ namespace DreamTech.Controllers
                 item.product_id = product.product_id;
                 item.quantity = 1;
 
-                items.Insert(count, item);
-                count++;
+                items.Add(item);
             }
 
             repo.SaveCartItems(items);
